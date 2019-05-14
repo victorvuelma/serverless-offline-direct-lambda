@@ -1,5 +1,5 @@
 "use strict";
-const { lambda } = require("./helpers");
+const { lambda, buildLambdaName } = require("./helpers");
 const packagePath = "node_modules/serverless-offline-lambda-invoke";
 const handlerPath = `proxy.js`;
 
@@ -103,3 +103,4 @@ const functionProxy = (functionBeingProxied, location) => ({
 
 module.exports = ServerlessPlugin;
 module.exports.lambda = lambda;
+module.exports.buildLambdaName = buildLambdaName;

@@ -1,6 +1,6 @@
 {
   "name": "serverless-offline-lambda-invoke",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A Serverless Offline plugin that exposes lambdas with no API Gateway event via HTTP, to allow offline direct lambda-to-lambda interactions.",
   "main": "index.js",
   "scripts": {
