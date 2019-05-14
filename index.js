@@ -1,6 +1,6 @@
 "use strict";
 
-const packagePath = "./../";
+const packagePath = 'node_modules/serverless-offline-lambda-invoke';
 const handlerPath = `proxy.js`;
 
 function AWS_SDK_METHOD(functionBeingProxied, location) {
