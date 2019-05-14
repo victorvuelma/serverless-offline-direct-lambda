@@ -13,7 +13,7 @@
     "Offline",
     "Direct"
   ],
-  "author": "Daniel Kelleher",
+  "author": "Tyler Zey",
   "license": "ISC",
   "dependencies": {
     "serialize-error": "^2.1.0"
