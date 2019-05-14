@@ -1,4 +1,8 @@
-service: serverless-offline-direct-lambda-example
+service: tyler
+
+custom:
+  serverless-offline:
+    port: 3000
 
 provider:
   name: aws
@@ -9,5 +13,11 @@ plugins:
   - serverless-offline-direct-lambda
 
 functions:
-  hello:
+  myLambda:
     handler: handler.hello
+  hasRoute:
+    handler: handler.hasRoute
+    events:
+      - http:
+          path: /
+          method: get
