@@ -1,14 +1,14 @@
 "use strict";
 const { lambda, buildLambdaName } = require("./helpers");
-const packagePath = "node_modules/serverless-offline-lambda-invoke";
+const packagePath = "node_modules/serverless-offline-lambda-support";
 const handlerPath = `proxy.js`;
 
-function AWS_SDK_METHOD(functionBeingProxied, location) {
-  var AWS_SDK_NODE_METHOD = {
+function AWS_SDK_EVENT(functionBeingProxied, location) {
+  const AWS_SDK_NODE_EVENT = {
     http: {
       method: "POST",
       // This is the path to the Lambda API..
-      path: `2015-03-31/functions/${functionBeingProxied.name}/invocations`,
+      path: `/2015-03-31/functions/${functionBeingProxied.name}/invocations`,
       integration: "lambda",
       request: {
         template: {
@@ -27,7 +27,7 @@ function AWS_SDK_METHOD(functionBeingProxied, location) {
       }
     }
   };
-  return AWS_SDK_NODE_METHOD;
+  return AWS_SDK_NODE_EVENT;
 }
 
 class ServerlessPlugin {
@@ -57,13 +57,9 @@ class ServerlessPlugin {
 
 const addProxies = (functionsObject, location) => {
   Object.keys(functionsObject).forEach(fn => {
-    // filter out functions with event config,
-    // leaving just those intended for direct lambda-to-lambda invocation
     const functionObject = functionsObject[fn];
-    if (!functionObject.events || functionObject.events.length === 0) {
-      const pf = functionProxy(functionObject, location);
-      functionsObject[pf.name] = pf;
-    }
+    const pf = functionProxy(functionObject, location);
+    functionsObject[pf.name] = pf;
   });
 };
 
@@ -92,9 +88,8 @@ const functionProxy = (functionBeingProxied, location) => ({
         }
       }
     },
-
     // See methods above for further details
-    AWS_SDK_METHOD(functionBeingProxied, location)
+    AWS_SDK_EVENT(functionBeingProxied, location)
   ],
   package: {
     include: [handlerPath]

@@ -1,6 +1,6 @@
 {
-  "name": "serverless-offline-lambda-invoke",
-  "version": "0.0.5",
+  "name": "serverless-offline-lambda-support",
+  "version": "0.1.0",
   "description": "A Serverless Offline plugin that exposes lambdas with no API Gateway event via HTTP, to allow offline direct lambda-to-lambda interactions.",
   "main": "index.js",
   "scripts": {
@@ -13,18 +13,19 @@
     "Offline",
     "Direct"
   ],
-  "author": "Tyler Zey",
+  "author": "Victor Vuelma",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.454.0",
-    "serialize-error": "^2.1.0"
+    "aws-sdk": "^2.597.0",
+    "serialize-error": "^5.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tylerzey/serverless-offline-direct-lambda.git"
+    "url": "git+https://github.com/victorvuelma/serverless-offline-lambda-support.git"
   },
   "bugs": {
-    "url": "https://github.com/tylerzey/serverless-offline-direct-lambda/issues"
+    "url": "https://github.com/victorvuelma/serverless-offline-lambda-support/issues"
   },
-  "homepage": "https://github.com/tylerzey/serverless-offline-direct-lambda#readme"
+  "homepage": "https://github.com/victorvuelma/serverless-offline-lambda-support#readme",
+  "devDependencies": {}
 }
