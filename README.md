@@ -6,7 +6,7 @@
 
 A Serverless Offline plugin that exposes lambdas with no API Gateway event via HTTP, to allow offline direct lambda-to-lambda interactions.
 
-Note - this requires the plugin 'serverless-offline'.
+Note - this requires the plugin [`serverless-offline`](https://www.npmjs.com/package/serverless-offline).
 
 ## Installation
 
@@ -29,11 +29,11 @@ yarn add serverless-offline-lambda-to-lambda -D
 Open your `serverless.yml` configuration file and
 
 - add a `plugins` section
-- add `serverless-functions-base-path` plugin
+- add `serverless-offline-lambda-to-lambda` plugin
 
 ```
 plugins:
-- serverless-offline-lambda-support
+- serverless-offline-lambda-to-lambda
 ```
 
 You may also want to change the port that the plugin runs on - you can do this by specifying the following custom config in your `serverless.yml` file:
@@ -59,15 +59,15 @@ You will see output like this:
 ```bash
 sls offline start
 
-Serverless: Running Serverless Offline with direct lambda support
+Serverless: Running Serverless Offline with lambda-to-lambda support
 Serverless: Starting Offline: dev/us-east-1.
 
-Serverless: Routes for myLambda:
+Serverless: Routes for lambda-func:
 Serverless: (none)
 
-Serverless: Routes for my-project-dev-myLambda_proxy:
-Serverless: POST /proxy/my-project-dev-myLambda
-Serverless: POST /2015-03-31/functions/my-project-dev-myLambda/invocations
+Serverless: Routes for my-sls-project-dev-lambda-func_proxy:
+Serverless: POST /proxy/my-sls-project-dev-lambda-func
+Serverless: POST /2015-03-31/functions/my-sls-project-dev-lambda-func/invocations
 ```
 
 ### Calling via HTTP Post:
@@ -76,7 +76,7 @@ The body of the POST should match the JSON data that would ordinarily be passed 
 
 ```bash
 curl -X POST \
-  http://localhost:4000/proxy/my-project-dev-myLambda \
+  http://localhost:4000/proxy/my-sls-project-dev-lambda-func \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -105,7 +105,7 @@ var lambda_args = {
 };
 
 var params = {
-  FunctionName: "my-project-dev-myLambda", // the lambda function we are going to invoke
+  FunctionName: "my-sls-project-dev-lambda-func", // the lambda function we are going to invoke
   Payload: JSON.stringify(lambda_args)
 };
 
