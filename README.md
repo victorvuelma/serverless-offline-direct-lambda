@@ -1,18 +1,42 @@
-# serverless-offline-lambda-support
+# serverless-offline-lambda-to-lambda
+
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+[![npm](https://img.shields.io/npm/v/serverless-offline-lambda-to-lambda.svg)](https://www.npmjs.com/package/serverless-offline-lambda-to-lambda)
+[![npm](https://img.shields.io/npm/dt/serverless-offline-lambda-to-lambda.svg)](https://www.npmjs.com/package/serverless-offline-lambda-to-lambda)
 
 A Serverless Offline plugin that exposes lambdas with no API Gateway event via HTTP, to allow offline direct lambda-to-lambda interactions.
 
-## Setup
-
 Note - this requires the plugin 'serverless-offline'.
 
-To include in your project, add the following to the plugins section in serverless.yml:
+## Installation
+
+Go to your project directory and install the plugin by running :
+
+for npm users
+
+```bash
+npm install -D serverless-offline-lambda-to-lambda
+```
+
+for yarn users
+
+```bash
+yarn add serverless-offline-lambda-to-lambda -D
+```
+
+## Setup
+
+Open your `serverless.yml` configuration file and
+
+- add a `plugins` section
+- add `serverless-functions-base-path` plugin
 
 ```
+plugins:
 - serverless-offline-lambda-support
 ```
 
-You may also want to change the port that the plugin runs on - you can do this by specifying the following custom config in your serverless yml file:
+You may also want to change the port that the plugin runs on - you can do this by specifying the following custom config in your `serverless.yml` file:
 
 ```yml
 custom:
@@ -28,15 +52,11 @@ To run:
 servlerless offline start
 ```
 
-(calling the command 'start' is necessary to trigger the plugin, simply running 'serverless online' does not trigger the start hooks).
-
-The plugin will create api-gateway proxies for all lambdas with _no_ triggering events.
+The plugin will create api-gateway proxies for all lambdas.
 
 You will see output like this:
 
 ```bash
-export AWS_SDK_USED=node
-
 sls offline start
 
 Serverless: Running Serverless Offline with direct lambda support
@@ -69,8 +89,6 @@ curl -X POST \
 
 You may also invoke the function by using the AWS SDK on your client side...
 This can be done by specifying a custom "endpoint" in your Lambda configuration like so:
-
-**Note:** the AWS SDK for NodeJS actually sends a different content type header on it's request to the Lambda API then all the other AWS SDK's (Python, Rails etc).. You will need to `export AWS_SDK_USED=node` before running the `serverless offline` if you wish to use this with the NodeJS AWS SDK.
 
 ```javascript
 var AWS = require("aws-sdk");
