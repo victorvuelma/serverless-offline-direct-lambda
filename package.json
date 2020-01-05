@@ -15,9 +15,7 @@
   ],
   "author": "Victor Vuelma",
   "license": "ISC",
-  "dependencies": {
-    "aws-sdk": "^2.597.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "standard": "^14.3.1"
   },
